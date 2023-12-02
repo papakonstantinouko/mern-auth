@@ -7,7 +7,9 @@ export default async function (req, res, next) {
     const hashedPassword = bcryptjs.hashSync(password)
     const user = new User({ username, email, password: hashedPassword })
     await user.save()
-    res.status(201).json({ message: 'User created successfully' })
+    res.status(201).json({
+      success: true,
+    })
   } catch (error) {
     next(error)
   }
