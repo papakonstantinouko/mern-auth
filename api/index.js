@@ -3,6 +3,7 @@ import dotenv from 'dotenv'
 import mongoose from 'mongoose'
 import userRoute from './routes/user.route.js'
 import signupRoute from './routes/signup.route.js'
+import signinRoute from './routes/signin.route.js'
 
 dotenv.config()
 mongoose
@@ -15,6 +16,7 @@ mongoose
     app.listen(3000, () => console.log('Server listening on port 3000'))
     app.use('/api/user', userRoute)
     app.use('/api/signup', signupRoute)
+    app.use('/api/signin', signinRoute)
     app.use((err, req, res, next) => {
       const statusCode = err.statusCode || 500
       const message = err.message || 'Internal Server Error'
