@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import userRoute from './routes/user.route.js'
 import signupRoute from './routes/signup.route.js'
 import signinRoute from './routes/signin.route.js'
+import googleRoute from './routes/google.route.js'
 
 dotenv.config()
 mongoose
@@ -17,6 +18,7 @@ mongoose
     app.use('/api/user', userRoute)
     app.use('/api/signup', signupRoute)
     app.use('/api/signin', signinRoute)
+    app.use('/api/google', googleRoute)
     app.use((err, req, res, next) => {
       console.log(err)
       const statusCode = err.statusCode || 500
