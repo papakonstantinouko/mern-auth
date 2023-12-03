@@ -18,8 +18,16 @@ mongoose
     app.use('/api/signup', signupRoute)
     app.use('/api/signin', signinRoute)
     app.use((err, req, res, next) => {
+      console.log(err)
       const statusCode = err.statusCode || 500
-      const message = err.message || 'Internal Server Error'
+      let message = err.message || 'Internal Server Error'
+      if (message.includes('duplicate key')) {
+        switch (req.url) {
+          case '/api/signup':
+            message = 'User already exists'
+            break
+        }
+      }
       res.status(statusCode).json({
         success: false,
         message,
